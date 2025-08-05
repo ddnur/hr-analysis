@@ -1,0 +1,7 @@
+pandas=2.2.3
+numpy=1.26.4
+matplotlib=3.10
+seabron=0.13.2
+optuna=4.3
+scikit-learn=1.7
+catboost=1.2.3
