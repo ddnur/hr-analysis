@@ -1,11 +1,10 @@
 # importing libs
 import pandas as pd
 
-# reading dataframes
+# reading job satisfaction info
 try:
     train_satisfaction = pd.read_csv(
-        '/Users/nurasyl/PycharmProjects/rabota_s_zabotoj/datasets/'
-        'work_satisfaction/train_job_satisfaction_rate_fixed.csv'
+        'datasets/work_satisfaction/train_job_satisfaction_rate_fixed.csv'
     )
 except FileNotFoundError:
     train_satisfaction = pd.read_csv(
@@ -14,7 +13,7 @@ except FileNotFoundError:
 
 try:
     test_features = pd.read_csv(
-        '/Users/nurasyl/PycharmProjects/rabota_s_zabotoj/datasets/work_satisfaction/test_features.csv'
+        'datasets/work_satisfaction/test_features.csv'
     )
 
 except FileNotFoundError:
@@ -23,8 +22,7 @@ except FileNotFoundError:
     )
 try:
     target_satisfaction = pd.read_csv(
-        '/Users/nurasyl/PycharmProjects/rabota_s_zabotoj/datasets/'
-        'work_satisfaction/test_target_job_satisfaction_rate.csv'
+        'datasets/work_satisfaction/test_target_job_satisfaction_rate.csv'
     )
 except FileNotFoundError:
     target_satisfaction = pd.read_csv(
@@ -90,5 +88,38 @@ test_features['level'] = test_features['level'].replace('sinior', 'senior')
 
 if __name__ == '__main__':
     # verifying changes
+    print("\nVerifying changes")
     print("\nChecking type of feature:\n", train_satisfaction.dtypes)
     print("\nChecking unique values in feature:", test_features['level'].unique())
+
+# reading quit info
+try:
+    train_quit = pd.read_csv(
+        'datasets/quit_predict/train_quit.csv'
+    )
+except FileNotFoundError:
+    train_quit = pd.read_csv(
+        '/datasets/train_quit.csv'
+    )
+
+try:
+    test_quit = pd.read_csv(
+        'datasets/quit_predict/test_target_quit.csv'
+    )
+except FileNotFoundError:
+    test_quit = pd.read_csv(
+        'datasets/test_target_quit.csv'
+    )
+
+if __name__ == '__main__':
+    # checking data
+    data_check(train_quit)
+    data_check(test_quit)
+
+train_quit = train_quit.replace('sinior', 'senior')
+train_quit['salary'] = train_quit['salary'].astype('float')
+
+if __name__ == '__main__':
+    # verifying changes
+    print("Unique Values of 'Level'", train_quit['level'].unique())
+    print("Data types:", train_quit.dtypes)
